@@ -17,6 +17,25 @@ const users = {
 }
 
 //Create - Post /shortUrl 
+router.post('/', (req, res) => {
+  const task = req.body.task;
+
+  //generate a new id  
+  const id = Math.random().toString(36).substring(2, 5);
+
+
+  const newUser = {
+    id,
+    task,
+    completed: false
+  };
+
+  users[id] = newUser;
+  console.log(users);
+
+  res.status(201).json(newUser);
+});
+
 
 //Read - Get /shortUrl 
 router.get('/', (req, res) => {
@@ -25,6 +44,8 @@ router.get('/', (req, res) => {
 })
 
 //Update - Patch/Put  /shortUrl/:id
+
+
 
 //Delete - Delete /shortUrl/:id
 

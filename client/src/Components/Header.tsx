@@ -71,7 +71,7 @@ const Header = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Typography>
 
-              <Link to="/myurls" >
+              <Link to="/myurls" style={{ textDecoration: 'none' }} >
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
@@ -81,7 +81,7 @@ const Header = () => {
               </Link>
             </Typography>
 
-            <Link to="/newurls" > <Button
+            <Link to="/newurls" style={{ textDecoration: 'none' }}> <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
@@ -93,7 +93,7 @@ const Header = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
 
-            <Link to="/login" >
+            <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -103,7 +103,7 @@ const Header = () => {
             </Link>
 
 
-            <Link to="/register" >
+            <Link to="/register" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}

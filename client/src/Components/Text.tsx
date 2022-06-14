@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 export default function Text() {
   return (
-    <div >
+    <div className='text-field'>
 
       <Box
         sx={{

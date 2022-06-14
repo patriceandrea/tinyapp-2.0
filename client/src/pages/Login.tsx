@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "../Components/Header";
+import AuthenTextField from "../Components/AuthenTextField";
+import "../stylesheet/AuthenTextField.css"
 
 export interface ILoginProps { }
 
@@ -7,7 +9,8 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
   return (
     <div>
       <Header />
-      <h1>Please Login into your account</h1>
+      <h1>Login</h1>
+      <AuthenTextField />
     </div>
   )
 };

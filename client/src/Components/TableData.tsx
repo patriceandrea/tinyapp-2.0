@@ -7,7 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { Box } from '@mui/material';
 
 export interface ITableDataProps { }
 
@@ -56,7 +58,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
         <TableHead>
           <TableRow>
             <StyledTableCell>Short URL</StyledTableCell>
-            <StyledTableCell >Long URL</StyledTableCell>
+            <StyledTableCell>Long URL</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -66,12 +68,19 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
                 {row.shortUrl}
               </StyledTableCell>
               <StyledTableCell>{row.longUrl}</StyledTableCell>
-
+              <Stack spacing={2} direction="row">
+                <Box mt={0.9}>
+                  <Button variant="contained" href="newurls" >
+                    Edit
+                  </Button>
+                  <Button variant="contained" style={{ background: 'red' }}>Delete</Button>
+                </Box>
+              </Stack>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer >
   );
 };
 

@@ -64,7 +64,7 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <Typography
+          <Typography style={{ color: 'black' }}
 
           >
             TinyApp
@@ -117,44 +117,48 @@ const ResponsiveAppBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-            <Button
+
+            <Link to="/myurls" >  <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <Link to="/myurls" >
-                My Url
-              </Link>
+              My Url
             </Button>
-            <Button
+            </Link>
+
+
+            <Link to="/newurls" > <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <Link to="/newurls" >
-                Create a New Url
-              </Link>
-            </Button>
+              Create a New Url </Button>
+            </Link>
+
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              <Link to="/login" >
+
+            <Link to="/login" >
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
                 Login
-              </Link>
+              </Button>
+            </Link>
 
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              <Link to="/register" >
+
+            <Link to="/register" >
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
                 Register
-              </Link>
+              </Button>
+            </Link>
 
-            </Button>
+
           </Box>
 
         </Toolbar>

@@ -1,11 +1,14 @@
 import React from "react";
-
+import Header from "../Components/Header"
 
 export interface IRegisterProps { }
 
 const Register: React.FunctionComponent<IRegisterProps> = (props) => {
   return (
-    <h1>Register</h1>
+    <div>
+      <Header />
+      <h1>Register</h1>
+    </div>
   )
 };
 

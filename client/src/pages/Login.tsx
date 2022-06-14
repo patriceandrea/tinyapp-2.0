@@ -1,11 +1,14 @@
 import React from "react";
-
+import Header from "../Components/Header";
 
 export interface ILoginProps { }
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
   return (
-    <h1>Please Login into your account</h1>
+    <div>
+      <Header />
+      <h1>Please Login into your account</h1>
+    </div>
   )
 };
 

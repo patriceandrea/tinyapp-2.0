@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
 import "../stylesheet/AuthenTextField.css"
 
 export default function AuthenTextField() {
@@ -35,7 +35,7 @@ export default function AuthenTextField() {
 
 
       </div>
-      <Button variant="contained" sx={{ m: 1 }}>Login</Button>
+
     </div>
 
   );

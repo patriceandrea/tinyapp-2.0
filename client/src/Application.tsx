@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import './App.css';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Edit } from "@mui/icons-material";
+import EditUrls from "./pages/EditUrls";
 
 export interface IApplicationProps { }
 
@@ -18,6 +20,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />
+        <Route path={"/edit"} element={<EditUrls />} />
       </Routes >
     </BrowserRouter >
   )

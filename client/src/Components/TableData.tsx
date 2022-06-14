@@ -70,7 +70,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
               <StyledTableCell>{row.longUrl}</StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>
-                  <Button variant="contained" href="newurls" >
+                  <Button variant="contained" href="edit" >
                     Edit
                   </Button>
                   <Button variant="contained" style={{ background: 'red' }}>Delete</Button>

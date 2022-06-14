@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Components/Header";
+import Text from "../Components/Text";
 
 export interface INewUrlsProps { }
 
@@ -8,7 +9,8 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props) => {
     <div>
       <Header />
       <h1>New Urls</h1>
-    </div>
+      <Text />
+    </div >
   )
 };
 

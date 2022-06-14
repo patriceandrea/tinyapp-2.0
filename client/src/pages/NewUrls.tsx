@@ -8,7 +8,7 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props) => {
   return (
     <div>
       <Header />
-      <h1>New Urls</h1>
+      <h1>Create TinyURL</h1>
       <Text />
     </div >
   )

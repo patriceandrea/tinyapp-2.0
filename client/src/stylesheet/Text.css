@@ -1,0 +1,8 @@
+.text-field {
+  display: flex;
+  margin: 2em;
+}
+
+.text-field p {
+  margin-right: 1em;
+}

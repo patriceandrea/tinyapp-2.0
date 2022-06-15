@@ -67,7 +67,8 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
               <StyledTableCell component="th" scope="row">
                 {row.shortUrl}
               </StyledTableCell>
-              <StyledTableCell>{row.longUrl}</StyledTableCell>
+              <StyledTableCell >{row.longUrl}
+              </StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>
                   <Button variant="contained" href="edit" >

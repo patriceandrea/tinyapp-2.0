@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
   res.json(usersArr);
 })
 
-//Update - Patch/Put  /shortUrl/:id
+//Update - Patch/Put  /shortUrl/:id or /edit
 
 
 

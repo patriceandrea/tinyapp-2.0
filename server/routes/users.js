@@ -5,7 +5,7 @@ const router = express.Router();
 const users = {
   abc: {
     id: 'abc',
-    task: '',
+    task: 'help me',
     completed: false
   },
   def: {
@@ -44,7 +44,22 @@ router.get('/', (req, res) => {
 })
 
 //Update - Patch/Put  /shortUrl/:id or /edit
+router.patch('/:id', (req, res) => {
+  const { newTask, completed } = req.body;
 
+  const todoId = req.params.id;
+
+  users[todoId].task = newTask;
+
+  if (completed !== undefined) {
+    users[todoId].completed = completed;
+  }
+  console.log(users[todoId].task);
+  console.log(users);
+
+
+  res.status(200).send({ sucess: true });
+});
 
 
 //Delete - Delete /shortUrl/:id

@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -8,6 +9,7 @@ const port = process.env.PORT || 8000;
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 //import the router(s)
 const userRouter = require('./routes/users');

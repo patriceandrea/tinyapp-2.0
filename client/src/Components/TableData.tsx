@@ -38,36 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-// const rows = [
-//   {
-//     "longURL": "http://www.lighthouselabs.ca",
-//     "user_id": "38jd48"
-//   },
-//   {
-//     "longURL": "http://www.google.com",
-//     "user_id": "9sd4u3"
-//   },
-//   {
-//     "longURL": "https://pomofocus.io/app",
-//     "user_id": "2fw44e"
-//   },
-//   {
-//     "longURL": "https://www.facebook.com/",
-//     "user_id": "user2RandomID"
-//   },
-//   {
-//     "longURL": "https://web.compass.lighthouselabs.ca/days/today",
-//     "user_id": "87ybe6"
-//   },
-//   {
-//     "longURL": "http://ryan.com",
-//     "user_id": "user2RandomID"
-//   },
-//   {
-//     "longURL": "http://bar.com",
-//     "user_id": "userRandomID"
-//   }
-// ];
 
 
 
@@ -102,7 +72,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.user_id}>
+            <StyledTableRow key={row.longURL}>
               {/* <StyledTableCell component="th" scope="row">
                 {row.shortUrl}
               </StyledTableCell> */}

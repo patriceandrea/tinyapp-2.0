@@ -13,10 +13,11 @@ app.use(cors());
 
 //import the router(s)
 const userRouter = require('./routes/users');
-
+const urlRouter = require('./routes/urls');
 
 //app.use the router(s)
-app.use('/users', userRouter)
+app.use('/users', userRouter);
+app.use('/urls', urlRouter);
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);

@@ -35,17 +35,36 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-
-  shortUrl: string,
-  longUrl: string
-) {
-  return { shortUrl, longUrl };
-}
 
 const rows = [
-  createData('46582a', 'www.patrice.com'),
-  createData('d3fe63', 'http://ryan.com'),
+  {
+    "longURL": "http://www.lighthouselabs.ca",
+    "user_id": "38jd48"
+  },
+  {
+    "longURL": "http://www.google.com",
+    "user_id": "9sd4u3"
+  },
+  {
+    "longURL": "https://pomofocus.io/app",
+    "user_id": "2fw44e"
+  },
+  {
+    "longURL": "https://www.facebook.com/",
+    "user_id": "user2RandomID"
+  },
+  {
+    "longURL": "https://web.compass.lighthouselabs.ca/days/today",
+    "user_id": "87ybe6"
+  },
+  {
+    "longURL": "http://ryan.com",
+    "user_id": "user2RandomID"
+  },
+  {
+    "longURL": "http://bar.com",
+    "user_id": "userRandomID"
+  }
 ];
 
 
@@ -57,17 +76,17 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Short URL</StyledTableCell>
             <StyledTableCell>Long URL</StyledTableCell>
+            <StyledTableCell>Short URL</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.shortUrl}>
-              <StyledTableCell component="th" scope="row">
+            <StyledTableRow key={row.user_id}>
+              {/* <StyledTableCell component="th" scope="row">
                 {row.shortUrl}
-              </StyledTableCell>
-              <StyledTableCell >{row.longUrl}
+              </StyledTableCell> */}
+              <StyledTableCell >{row.longURL}
               </StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>

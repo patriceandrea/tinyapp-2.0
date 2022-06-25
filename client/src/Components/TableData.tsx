@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 export interface ITableDataProps { }
 
@@ -36,40 +38,58 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const rows = [
-  {
-    "longURL": "http://www.lighthouselabs.ca",
-    "user_id": "38jd48"
-  },
-  {
-    "longURL": "http://www.google.com",
-    "user_id": "9sd4u3"
-  },
-  {
-    "longURL": "https://pomofocus.io/app",
-    "user_id": "2fw44e"
-  },
-  {
-    "longURL": "https://www.facebook.com/",
-    "user_id": "user2RandomID"
-  },
-  {
-    "longURL": "https://web.compass.lighthouselabs.ca/days/today",
-    "user_id": "87ybe6"
-  },
-  {
-    "longURL": "http://ryan.com",
-    "user_id": "user2RandomID"
-  },
-  {
-    "longURL": "http://bar.com",
-    "user_id": "userRandomID"
-  }
-];
+// const rows = [
+//   {
+//     "longURL": "http://www.lighthouselabs.ca",
+//     "user_id": "38jd48"
+//   },
+//   {
+//     "longURL": "http://www.google.com",
+//     "user_id": "9sd4u3"
+//   },
+//   {
+//     "longURL": "https://pomofocus.io/app",
+//     "user_id": "2fw44e"
+//   },
+//   {
+//     "longURL": "https://www.facebook.com/",
+//     "user_id": "user2RandomID"
+//   },
+//   {
+//     "longURL": "https://web.compass.lighthouselabs.ca/days/today",
+//     "user_id": "87ybe6"
+//   },
+//   {
+//     "longURL": "http://ryan.com",
+//     "user_id": "user2RandomID"
+//   },
+//   {
+//     "longURL": "http://bar.com",
+//     "user_id": "userRandomID"
+//   }
+// ];
 
+
+
+interface IRow {
+  longURL: string;
+  user_id: string;
+}
+
+const defaultRows: IRow[] = [];
 
 
 const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
+
+  const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/users').then(res => {
+      setRows(res.data)
+    })
+  }, []);
+
+
   return (
 
     <TableContainer component={Paper}>

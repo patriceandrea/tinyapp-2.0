@@ -43,6 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 interface IRow {
   longURL: string;
+  shortURL: string;
   user_id: string;
 }
 
@@ -73,10 +74,10 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.longURL}>
-              {/* <StyledTableCell component="th" scope="row">
-                {row.shortUrl}
-              </StyledTableCell> */}
-              <StyledTableCell >{row.longURL}
+              <StyledTableCell component="th" scope="row">
+                {row.longURL}
+              </StyledTableCell>
+              <StyledTableCell >{row.shortURL}
               </StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>

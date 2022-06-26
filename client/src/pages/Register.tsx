@@ -6,12 +6,22 @@ import { Box } from "@mui/system";
 
 export interface IRegisterProps { }
 
-const Register: React.FunctionComponent<IRegisterProps> = (props) => {
+type UserProps = {
+  setEmail: any;
+  setPassword: any;
+}
+
+const Register: React.FunctionComponent<IRegisterProps> = (props: any) => {
+  const { setEmail, setPassword } = props;
+
   return (
     <div>
       <Header />
       <h1>Register</h1>
-      <AuthenTextField />
+      <AuthenTextField
+        setEmail={setEmail}
+        setPassword={setPassword}
+      />
       <Box textAlign='center'>
         <Button variant="contained">Register</Button>
       </Box>

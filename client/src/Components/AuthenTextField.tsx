@@ -1,10 +1,28 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { useState } from 'react';
 
 import "../stylesheet/AuthenTextField.css"
 
-export default function AuthenTextField() {
+type UserProps = {
+  setEmail: any;
+  setPassword: any;
+}
+
+
+const AuthenTextField: React.FC<UserProps> = (props: any) => {
+
+  const { setEmail, setPassword } = props;
+
+  // const { setUser } = useContext(UserContext);
+
+  let navigate = useNavigate()
+
+
+
   return (
     <div className='authentication-form'>
       <div className='email'>
@@ -15,7 +33,15 @@ export default function AuthenTextField() {
             maxWidth: '70%',
           }}
         >
-          <TextField fullWidth label="Enter your email" id="fullWidth" />
+          <TextField
+            fullWidth
+            type="email"
+            label="Enter your email"
+            name="email"
+            id="email"
+            required={true}
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)} />
 
         </Box>
 
@@ -29,7 +55,16 @@ export default function AuthenTextField() {
             maxWidth: '70%',
           }}
         >
-          <TextField fullWidth label="Enter your password" id="fullWidth" />
+          <TextField
+            fullWidth
+            type="password"
+            name="password"
+            label="Enter your password"
+            id="password"
+            placeholder="password"
+            required={true}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
         </Box>
 
@@ -40,3 +75,5 @@ export default function AuthenTextField() {
 
   );
 }
+
+export default AuthenTextField;

@@ -40,6 +40,24 @@ router.get('/', (req, res) => {
   res.json(usersArr);
 })
 
+/// patch 
+router.patch('/:id', (req, res) => {
+  const { newTask, completed } = req.body;
+
+  const todoId = req.params.id;
+
+  users[todoId].task = newTask;
+
+  if (completed !== undefined) {
+    users[todoId].completed = completed;
+  }
+  console.log(users[todoId].task);
+  console.log(users);
+
+
+  res.status(200).send({ sucess: true });
+});
+
 
 
 module.exports = router; 

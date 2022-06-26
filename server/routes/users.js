@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const findUserByEmail = require('../helpers')
 
 //mock data for now
 
@@ -16,25 +17,23 @@ const users = {
   }
 };
 
-//Create - Post /shortUrl 
-router.post('/', (req, res) => {
-  const task = req.body.task;
+//Create - Post /login
+router.post('/login', (req, res) => {
+  const user = findUserByEmail(req.body.email, users);
 
-  //generate a new id  
-  const id = Math.random().toString(36).substring(2, 5);
+  if (user && bcrypt.compareSync(req.body.password, user.password)) {
+    req.session.user_id = user.id;
+    res.redirect('/myurls');
+  } else {
 
+    res.status(403).send('Email cannot be found');
 
-  const newUser = {
-    id,
-    task,
-    completed: false
-  };
-
-  users[id] = newUser;
-  console.log(users);
-
-  res.status(201).json(newUser);
+  }
 });
+
+/// Post - Register 
+
+
 
 
 //Read - Get /shortUrl 

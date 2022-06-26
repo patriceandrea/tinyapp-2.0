@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const findUserByEmail = require('../helpers')
+const findUserByEmail = require('../helpers');
+
+
+
 
 //mock data for now
 
@@ -21,9 +24,9 @@ const users = {
 router.post('/login', (req, res) => {
   const user = findUserByEmail(req.body.email, users);
 
-  if (user && bcrypt.compareSync(req.body.password, user.password)) {
-    req.session.user_id = user.id;
-    res.redirect('/myurls');
+  if (user.email && user.password) {
+    req.session.id = user.id;
+    res.status(200).send('sucess!');
   } else {
 
     res.status(403).send('Email cannot be found');

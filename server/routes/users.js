@@ -21,7 +21,7 @@ const users = {
 };
 
 //Create - Post /login
-router.post('/login', (req, res) => {
+router.post('/login', (req, response) => {
   const user = findUserByEmail(req.body.email, users);
 
   if (user.email && user.password) {

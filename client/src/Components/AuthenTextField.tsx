@@ -24,6 +24,7 @@ const AuthenTextField: React.FC<UserProps> = (props: any) => {
 
 
   return (
+
     <div className='authentication-form'>
       <div className='email'>
         <p>Email</p>

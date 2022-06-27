@@ -55,7 +55,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
   const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/urls').then(res => {
+    axios.get('http://localhost:8001/urls').then(res => {
       setRows(res.data)
     })
   }, []);

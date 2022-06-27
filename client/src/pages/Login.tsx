@@ -33,11 +33,13 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
       const response = await axios.post(`http://localhost:8000/users/login`, { email, password }, { withCredentials: true })
       if (response.data.user) {
         setUser(response.data.user)
+        console.log('sucess!!!')
       }
       const success = response.status === 200
       if (isSignUp && success) navigate('/myurls')
     } catch (error) {
       setError('Email / Password invalid')
+      console.log('did not work')
     }
   }
   return (

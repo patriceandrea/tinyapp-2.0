@@ -30,7 +30,7 @@ const urlRouter = require('./routes/urls');
 
 //app.use the router(s)
 app.use('/users', userRouter(db));
-app.use('/urls', urlRouter);
+app.use('/urls', urlRouter(db));
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);

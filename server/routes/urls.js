@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
+//mock db 
 const urls =
 {
   "b2xVn2": {
@@ -42,29 +42,56 @@ const urls =
 };
 
 
-router.get('/', (req, res) => {
-  const usersArr = Object.values(urls);
-  res.json(usersArr);
-})
+// router.get('/', (req, res) => {
+//   const usersArr = Object.values(urls);
+//   res.json(usersArr);
+// })
 
-/// patch 
-router.patch('/:id', (req, res) => {
-  const { newTask, completed } = req.body;
+// /// patch 
+// router.patch('/:id', (req, res) => {
+//   const { newTask, completed } = req.body;
 
-  const todoId = req.params.id;
+//   const todoId = req.params.id;
 
-  users[todoId].task = newTask;
+//   users[todoId].task = newTask;
 
-  if (completed !== undefined) {
-    users[todoId].completed = completed;
-  }
-  console.log(users[todoId].task);
-  console.log(users);
-
-
-  res.status(200).send({ sucess: true });
-});
+//   if (completed !== undefined) {
+//     users[todoId].completed = completed;
+//   }
+//   console.log(users[todoId].task);
+//   console.log(users);
 
 
+//   res.status(200).send({ sucess: true });
+// });
 
-module.exports = router; 
+// module.exports = router; 
+
+//this works!
+module.exports = (db) => {
+  router.get('/urls', (req, res) => {
+    // const user_id = req.body.user_id;
+    const user_id = req.session.id
+    console.log(req.session)
+    const command = `
+    select urls.user_id, long_url, short_url 
+    from urls 
+    left join users on users.id = urls.user_id
+    where user_id= $1;`
+    const values = [user_id];
+
+    db.query(command, values).then(data => {
+      if (data["rows"].length > 0) {
+        return res.json(data.rows);
+      }
+    })
+  });
+
+  //from the mock db 
+  router.get('/', (req, res) => {
+    const usersArr = Object.values(urls);
+    res.json(usersArr);
+  })
+
+  return router;
+}

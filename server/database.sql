@@ -13,7 +13,7 @@ short_url VARCHAR
 
 
 -- INSERT INTO users( email, password)VALUES('patrice@yahoo.ca', '123');
--- INSERT INTO urls(user_id, long_url, short_url)VALUES(1, 'https://pomofocus.io/app', '80bc0f');
+-- INSERT INTO urls(user_id, long_url, short_url)VALUES(2, 'https://pomofocus.io/app', '80bc0f');
 
 
 --- QUERY 
@@ -27,3 +27,7 @@ where users.id= 1;
 select * 
 from users; 
 
+--Update
+UPDATE users 
+set password = " $2a$12$rLvcVDWkUWqJBYFSyVGX7eeyuQwlBMw1zhduS5GU.VWkYQLsQ2jte"
+where users.id = 1;

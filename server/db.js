@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 
 
-const pool = new Pool({
+const db = new Pool({
   database: process.env.DATABASE_NAME,
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -9,4 +9,4 @@ const pool = new Pool({
   port: process.env.DATABASE_PORT
 })
 
-module.exports = pool; 
+module.exports = db; 

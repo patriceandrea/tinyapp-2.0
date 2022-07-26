@@ -1,3 +1,5 @@
+const users = require('./users');
+
 const router = require('express').Router();
 
 //mock db 
@@ -68,6 +70,7 @@ const urls =
 // module.exports = router; 
 
 //this works!
+// to use for real 
 module.exports = (db) => {
   router.get('/urls', (req, res) => {
     // const user_id = req.body.user_id;
@@ -86,6 +89,61 @@ module.exports = (db) => {
       }
     })
   });
+
+
+  ///Edit 
+  //put request works!
+  router.put('/:id', (req, res) => {
+    const user_id = req.session.id
+    const { long_url } = req.body;
+
+    const command =
+      ` UPDATE urls
+      SET long_url = $1
+      WHERE user_id = $2
+       returning *;`
+    values = [long_url, user_id];
+
+    db.query(command, values).then(data => {
+      if (data["rows"].length > 0) {
+        return res.status(200).send({
+          "success": true,
+          "message": "Long Url has been updated successfully!",
+          "user_id": req.session.id
+        })
+      }
+      return res.status(404).send("Error creating profile page")
+
+    })
+
+  });
+
+
+  //Delete 
+  router.delete('/:id', (req, res) => {
+    // const user_id = req.session.id
+    const { long_url } = req.body;
+
+    const command =
+      ` DELETE FROM urls 
+      WHERE long_url=$1
+       returning *;`
+    values = [long_url];
+
+    db.query(command, values).then(data => {
+      if (data["rows"].length > 0) {
+        return res.status(200).send({
+          "success": true,
+          "message": "Long Url has been deleted!",
+          "user_id": req.session.id
+        })
+      }
+      return res.status(404).send("Error creating profile page")
+
+    })
+
+  });
+
 
   //from the mock db 
   router.get('/', (req, res) => {

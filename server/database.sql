@@ -31,3 +31,15 @@ from users;
 UPDATE users 
 set password = " $2a$12$rLvcVDWkUWqJBYFSyVGX7eeyuQwlBMw1zhduS5GU.VWkYQLsQ2jte"
 where users.id = 1;
+
+UPDATE urls 
+SET long_url='www.facebook.com'
+where user_id=2;
+
+UPDATE urls
+SET long_url = 'https://pomofocus.io/app'
+WHERE user_id = 1;
+
+---Delete
+
+DELETE FROM urls WHERE long_url='www.facebook.com';

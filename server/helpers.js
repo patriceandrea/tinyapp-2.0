@@ -1,11 +1,23 @@
-const findUserByEmail = (email, database) => {
-  for (const user in database) {
+const findUserByEmail = function (email, db) {
+  const queryStringEmail = `SELECT *
+  FROM users
+  WHERE email = $1`
+  const values = [email];
+  return db
+    .query(queryStringEmail, values)
+    .then((result) => {
+      if (result.rows.length === 0) {
+        console.log("Email does not exist");
+        return "No email found";
+      } else {
+        return result.rows[0];
+      }
 
-    if (database[user].email === email) {
-      return database[user];
-    }
-  }
-  return undefined;
-};
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+
+}
 
 module.exports = findUserByEmail;

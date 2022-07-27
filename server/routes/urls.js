@@ -91,6 +91,35 @@ module.exports = (db) => {
   });
 
 
+  //Create
+  //for the short URL generator   
+  function generateRandomString() {
+    return Math.floor((1 + Math.random()) * 0x1000000).toString(16).substring(1);
+  };
+  router.post('/add', (req, res) => {
+
+
+    const user_id = req.session.id;
+    const long_url = req.body.long_url;
+    const short_url = generateRandomString();
+    const command = `INSERT INTO urls(user_id, long_url, short_url)VALUES($1, $2, $3);`
+    values = [user_id, long_url, short_url];
+    db.query(command, values).then(data => {
+      res.json(data.rows);
+
+      if (data["rows"].length > 0) {
+
+        console.log("Sucess!")
+      } else {
+        console.log("unable to generate a short URL");
+      }
+    });
+  })
+
+
+
+
+
   ///Edit 
   //put request works!
   router.put('/:id', (req, res) => {

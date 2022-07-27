@@ -42,8 +42,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface IRow {
-  longURL: string;
-  shortURL: string;
+  long_url: string;
+  short_url: string;
   user_id: string;
 }
 
@@ -55,7 +55,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
   const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
 
   useEffect(() => {
-    axios.get('http://localhost:8001/urls').then(res => {
+    axios.get('http://localhost:8001/urls/urls', { withCredentials: true }).then(res => {
       setRows(res.data)
     })
   }, []);
@@ -73,11 +73,12 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.longURL}>
+            <StyledTableRow key={row.user_id}>
               <StyledTableCell component="th" scope="row">
-                {row.longURL}
+                {row.long_url}
+                Long
               </StyledTableCell>
-              <StyledTableCell >{row.shortURL}
+              <StyledTableCell >{row.short_url}
               </StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>

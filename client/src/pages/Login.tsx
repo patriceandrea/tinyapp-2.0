@@ -25,15 +25,17 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     try {
-      if (isSignUp && (password !== confirmPassword)) {
-        setError('Passwords need to match!')
-        return
-      }
+      // if (isSignUp && (password !== confirmPassword)) {
+      //   setError('Passwords need to match!')
+      //   return
+      // }
       // If response is success navigate to onboarding - navidat a part of router dom
-      const response = await axios.post(`http://localhost:8000/users/login`, { email, password }, { withCredentials: true })
+      const response = await axios.post(`http://localhost:8001/users/login`, { email, password }, { withCredentials: true })
       if (response.data.user) {
-        setUser(response.data.user)
+        setUser(response.data.user.id)
+        navigate("/myurls")
         console.log('sucess!!!')
+        console.log('hello', response.data.user.id);
       }
       const success = response.status === 200
       if (isSignUp && success) navigate('/myurls')
@@ -42,6 +44,10 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
       console.log('did not work')
     }
   }
+
+
+
+
   return (
 
 
@@ -56,8 +62,10 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
           <Button
             variant="contained"
             type="submit"
+
           >Login</Button>
         </Box>
+        <p>{error}</p>
       </form>
     </div>
   )

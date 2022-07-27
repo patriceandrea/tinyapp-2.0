@@ -75,7 +75,7 @@ module.exports = (db) => {
   router.get('/urls', (req, res) => {
     // const user_id = req.body.user_id;
     const user_id = req.session.id
-    console.log(req.session.id)
+    console.log('req.session.id', req.session.id);
     const command = `
     select urls.user_id, long_url, short_url 
     from urls 

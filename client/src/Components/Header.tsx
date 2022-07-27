@@ -37,9 +37,11 @@ import { Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 
-const Header = () => {
+
+const Header = (user: any) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -109,25 +111,34 @@ const Header = () => {
                         Create a New Url
                       </Button>
                     </Link>
-                    <Link to="/login" style={{ textDecoration: 'none' }}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'black', display: 'flex' }}
-                      >
-                        Login
-                      </Button>
-                    </Link>
-                    <Link to="/register" style={{ textDecoration: 'none' }}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'black', display: 'block' }}
-                      >
-                        Register
-                      </Button>
-                    </Link>
+
+//TO DO
+                    {!user.id ?
+                      <div className='authentication'>
+                        <Link to="/login" style={{ textDecoration: 'none' }}>
+                          <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'black', display: 'flex' }}
+                          >
+                            Login
+                          </Button>
+                        </Link>
+                        <Link to="/register" style={{ textDecoration: 'none' }}>
+                          <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
+                          >
+                            Register
+                          </Button>
+                        </Link>
+                      </div>
+                      : <h1>Logged in</h1>
+                    }
+
+
+
                   </Typography>
                   <Typography>
-
                   </Typography>
                 </Box >
               </MenuItem>

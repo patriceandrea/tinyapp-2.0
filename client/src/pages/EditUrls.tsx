@@ -6,18 +6,25 @@ import "../stylesheet/Text.css";
 import "../stylesheet/EditUrls.css"
 import { TextField } from "@mui/material";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 export interface IHomeProps { }
 
 const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
 
   let navigate = useNavigate();
+  const { shortUrl } = useParams();
 
   const [longUrl, setLongUrl] = React.useState<any | null>(null);
   const [error, setError] = React.useState<any | null>(null);
 
-  const url = `http://localhost:8001/urls/edit/:shorUrl`;
+  const url = `http://localhost:8001/urls/edit/:shortUrl`;
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/urls/urls', { withCredentials: true }).then(res => {
+      // setRows(res.data)
+    })
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -40,14 +47,14 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
       <Header />
       <div className="edit">
         <h2>TinyURL for: insert URL link</h2>
-        <p>Short URL: insert shortURL</p>
+        <p>Short URL: {JSON.stringify(shortUrl)}</p>
         <h2>EDIT</h2>
-        <div className="text-field">
-          <p>new Url:</p>
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => { handleSubmit(e) }}>
+          <div className="text-field">
+            <p>new Url:</p>
             <Text />
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   )

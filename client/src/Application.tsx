@@ -20,7 +20,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />
-        <Route path={"/edit"} element={<EditUrls />} />
+        <Route path={"/edit/:shortUrl"} element={<EditUrls />} />
       </Routes >
     </BrowserRouter >
   )

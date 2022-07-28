@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 export interface ITableDataProps { }
 
 
@@ -51,6 +51,8 @@ const defaultRows: IRow[] = [];
 
 
 const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
+  let navigate = useNavigate()
+
 
   const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
 
@@ -81,7 +83,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
               </StyledTableCell>
               <Stack spacing={2} direction="row">
                 <Box mt={0.9}>
-                  <Button variant="contained" href="edit" >
+                  <Button variant="contained" onClick={() => navigate('/edit/:shortUrl')} >
                     Edit
                   </Button>
                   <Button variant="contained" style={{ background: 'red' }}>Delete</Button>

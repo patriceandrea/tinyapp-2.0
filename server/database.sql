@@ -44,3 +44,4 @@ WHERE user_id = 1;
 
 DELETE FROM urls WHERE long_url='www.facebook.com';
 DELETE FROM urls WHERE user_id is null;
+DELETE FROM urls WHERE user_id =3;

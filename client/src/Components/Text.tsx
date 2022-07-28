@@ -14,8 +14,7 @@ export default function Text() {
           maxWidth: '70%',
         }}
       >
-
-
+        <TextField fullWidth label="new TinyURL" id="fullWidth" />
       </Box>
       <Button variant="contained" sx={{ m: 1 }}>Submit</Button>
     </div>

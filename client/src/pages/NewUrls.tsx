@@ -26,15 +26,13 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
     axios.post(url, { user, longUrl }, { withCredentials: true })
       .then((data) => {
         // console.log(user);
-        // setLongUrl(data)
+        setLongUrl(data)
         navigate("/myurls");
 
       })
       .catch((e) => console.log(e))
 
   }
-
-
 
 
   return (

@@ -117,9 +117,10 @@ module.exports = (db) => {
 
   ///Edit 
   //put request works!
-  router.put('/edit', (req, res) => {
+  router.put('/edit/:shortUrl', (req, res) => {
     const user_id = req.session.id
-    const { long_url, short_url } = req.body;
+    const short_url = req.params.shortUrl;
+    const { long_url } = req.body;
 
     const command =
       ` UPDATE urls
@@ -138,7 +139,7 @@ module.exports = (db) => {
           "user_id": req.session.id
         })
       }
-      console.log(req.ses)
+      console.log(data["rows"])
       return res.status(404).send("Error creating profile page")
 
     })

@@ -17,7 +17,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
   const [longUrl, setLongUrl] = React.useState<any | null>(null);
   const [error, setError] = React.useState<any | null>(null);
 
-  const url = `http://localhost:8001/urls/:id`;
+  const url = `http://localhost:8001/urls/edit/:shorUrl`;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -44,7 +44,9 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
         <h2>EDIT</h2>
         <div className="text-field">
           <p>new Url:</p>
-          <Text />
+          <form onSubmit={handleSubmit}>
+            <Text />
+          </form>
         </div>
       </div>
     </div>

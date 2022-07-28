@@ -76,7 +76,6 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
             <StyledTableRow key={row.user_id}>
               <StyledTableCell component="th" scope="row">
                 {row.long_url}
-                Long
               </StyledTableCell>
               <StyledTableCell >{row.short_url}
               </StyledTableCell>

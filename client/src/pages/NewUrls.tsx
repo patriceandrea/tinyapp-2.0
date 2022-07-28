@@ -3,24 +3,38 @@ import Header from "../Components/Header";
 import Text from "../Components/Text";
 import "../stylesheet/Text.css";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import { useState } from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 export interface INewUrlsProps { }
 
-const NewUrls: React.FunctionComponent<INewUrlsProps> = (props) => {
+
+const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
+  const { user } = props;
 
   let navigate = useNavigate();
 
-  // make a url generator function 
-  function generateRandomString() {
-    return Math.floor((1 + Math.random()) * 0x1000000).toString(16).substring(1);
-  };
+  const [longUrl, setLongUrl] = React.useState<any | null>(null);
+  const [error, setError] = React.useState<any | null>(null);
 
 
-  // create request for 
-  // make a handle submit function 
+  const url = 'http://localhost:8001/urls/add';
+
+  const handleSubmit = (e: any) => {
+
+    axios.post(url, { user, longUrl }, { withCredentials: true })
+      .then((data) => {
+        // console.log(user);
+        // setLongUrl(data)
+        navigate("/myurls");
+
+      })
+      .catch((e) => console.log(e))
+
+  }
 
 
-  // add a form and handle dubmit 
 
 
   return (
@@ -28,10 +42,14 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props) => {
       <Header />
       <h1>Create TinyURL</h1>
       <div className="text-field">
-        <form>
+        <form onSubmit={(e) => { handleSubmit(e) }}>
           <p>Enter a URL:</p>
-          <Text />
+          <TextField fullWidth label="new TinyURL" id="fullWidth" onChange={(e) => { setLongUrl(e.target.value) }} />
+          {/* <Text /> */}
+          <Button variant="contained" sx={{ m: 1 }} type="submit">Submit</Button>
+          {error}
         </form>
+
       </div>
     </div >
   )

@@ -100,20 +100,15 @@ module.exports = (db) => {
 
 
     const user_id = req.session.id;
-    const long_url = req.body.long_url;
+    const long_url = req.body.longUrl;
     const short_url = generateRandomString();
     const command = `INSERT INTO urls(user_id, long_url, short_url)VALUES($1, $2, $3);`
     values = [user_id, long_url, short_url];
     db.query(command, values).then(data => {
-      res.json(data.rows);
-
-      if (data["rows"].length > 0) {
-
-        console.log("Sucess!")
-      } else {
-        console.log("unable to generate a short URL");
-      }
-    });
+      console.log("Sucess!");
+      return res.json(data.rows);
+    })
+      .catch((err) => console.log(err))
   })
 
 

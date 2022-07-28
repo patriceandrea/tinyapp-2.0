@@ -117,25 +117,28 @@ module.exports = (db) => {
 
   ///Edit 
   //put request works!
-  router.put('/:id', (req, res) => {
+  router.put('/edit', (req, res) => {
     const user_id = req.session.id
-    const { long_url } = req.body;
+    const { long_url, short_url } = req.body;
 
     const command =
       ` UPDATE urls
       SET long_url = $1
       WHERE user_id = $2
-       returning *;`
-    values = [long_url, user_id];
+      AND short_url = $3
+     returning *;`
+    values = [long_url, user_id, short_url];
 
     db.query(command, values).then(data => {
       if (data["rows"].length > 0) {
+
         return res.status(200).send({
           "success": true,
           "message": "Long Url has been updated successfully!",
           "user_id": req.session.id
         })
       }
+      console.log(req.ses)
       return res.status(404).send("Error creating profile page")
 
     })

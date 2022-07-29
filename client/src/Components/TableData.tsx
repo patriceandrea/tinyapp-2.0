@@ -45,6 +45,7 @@ interface IRow {
   long_url: string;
   short_url: string;
   user_id: string;
+  id: any;
 }
 
 const defaultRows: IRow[] = [];
@@ -59,6 +60,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
   useEffect(() => {
     axios.get('http://localhost:8001/urls/urls', { withCredentials: true }).then(res => {
       setRows(res.data)
+      console.log(res.data)
     })
   }, []);
 
@@ -77,7 +79,8 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
           {rows.map((row) => (
             <StyledTableRow key={row.user_id}>
               <StyledTableCell component="th" scope="row">
-                {row.long_url}
+                {`row.id, ${row.id}`}: {row.long_url}
+
               </StyledTableCell>
               <StyledTableCell >{row.short_url}
               </StyledTableCell>

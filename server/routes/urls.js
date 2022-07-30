@@ -175,7 +175,7 @@ module.exports = (db) => {
 
   //Delete 
   //this works 
-  router.delete('/:id', (req, res) => {
+  router.delete('/delete', (req, res) => {
     // const user_id = req.session.id
     const { long_url, id } = req.body;
 
@@ -194,7 +194,7 @@ module.exports = (db) => {
           "user_id": req.session.id
         })
       }
-      return res.status(404).send("Error creating profile page")
+      return res.status(404).send("Cannot delete long URl")
 
     })
 

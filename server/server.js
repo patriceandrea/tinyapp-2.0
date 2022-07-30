@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ origin: 'http://localhost:3002', methods: 'GET, POST', credentials: true }))
+app.use(cors({ origin: 'http://localhost:3002', methods: 'GET, POST, DELETE', credentials: true }))
 app.use(cookieSession({
   name: 'session',
   keys: ['iAMaKEyyyyyyyyyy', 'IaMTheSecondKey'],

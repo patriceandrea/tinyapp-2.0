@@ -46,6 +46,7 @@ interface IRow {
   short_url: string;
   user_id: string;
   id: any;
+
 }
 
 const defaultRows: IRow[] = [];
@@ -54,6 +55,7 @@ const defaultRows: IRow[] = [];
 const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
   let navigate = useNavigate()
 
+  const [longUrl, setLongUrl] = React.useState<any | null>(null);
 
   const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
 
@@ -63,6 +65,22 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
       console.log(res.data)
     })
   }, []);
+
+
+
+  const url = 'http://localhost:8001/urls/delete';
+
+  const handleclick = (id: any) => {
+
+    axios.delete(url, { withCredentials: true })
+      .then((res) => {
+        const del = rows.filter((long: any) => id !== long.id)
+        setRows(del)
+        console.log('yo', res)
+      })
+      .catch((err) => console.log(err))
+  }
+
 
 
   return (
@@ -79,7 +97,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
           {rows.map((row) => (
             <StyledTableRow key={row.user_id}>
               <StyledTableCell component="th" scope="row">
-                {`row.id, ${row.id}`}: {row.long_url}
+                {`ID - ${row.id}`}: {row.long_url}
 
               </StyledTableCell>
               <StyledTableCell >{row.short_url}
@@ -89,7 +107,7 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
                   <Button variant="contained" onClick={() => navigate('/edit/:shortUrl')} >
                     Edit
                   </Button>
-                  <Button variant="contained" style={{ background: 'red' }}>Delete</Button>
+                  <Button variant="contained" style={{ background: 'red' }} onClick={(id) => handleclick(id)}>Delete</Button>
                 </Box>
               </Stack>
             </StyledTableRow>

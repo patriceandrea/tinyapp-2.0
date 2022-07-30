@@ -23,6 +23,14 @@ from urls
 left join users on users.id = urls.user_id
 where users.id= 1; 
 
+
+
+ select  urls.user_id, long_url, short_url, urls.id
+    from urls 
+    left join users on users.id = urls.user_id
+    where user_id= 3
+    and short_url= '21dc06'
+    ;
 --- users 
 select * 
 from users; 
@@ -39,6 +47,11 @@ where user_id=2;
 UPDATE urls
 SET long_url = 'https://pomofocus.io/app'
 WHERE user_id = 1;
+
+UPDATE urls
+SET long_url ='andasasy.com'
+WHERE user_id = 3
+AND short_url = '5388bf';
 
 ---Delete
 

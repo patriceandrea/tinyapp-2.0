@@ -7,17 +7,13 @@ import { useState } from 'react';
 
 import "../stylesheet/AuthenTextField.css"
 
-type UserProps = {
+type AuthenTextFieldProps = {
   setEmail: any;
   setPassword: any;
 }
 
 
-const AuthenTextField: React.FC<UserProps> = (props: any) => {
-
-  const { setEmail, setPassword } = props;
-
-  // const { setUser } = useContext(UserContext);
+const AuthenTextField = ({ setEmail, setPassword }: AuthenTextFieldProps) => {
 
   let navigate = useNavigate()
 

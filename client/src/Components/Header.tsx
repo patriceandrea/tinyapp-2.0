@@ -38,16 +38,6 @@ const Header = (user: any) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -66,49 +56,45 @@ const Header = (user: any) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
               <MenuItem onClick={handleCloseNavMenu}>
                 <Box>
-                  <Typography>
-                    <Link to="/myurls" style={{ textDecoration: 'none' }} >
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ color: 'black' }}>
-                        My Url
-                      </Button>
-                    </Link>
-                    <Link to="/newurls" style={{ textDecoration: 'none' }}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'black', display: 'flex' }}
-                      >
-                        Create a New Url
-                      </Button>
-                    </Link>
-                    // TODO
-                    {/* {!user.id ?
-                      <div className='authentication'>
-                        <Link to="/login" style={{ textDecoration: 'none' }}>
-                          <Button
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'black', display: 'flex' }}
-                          >
-                            Login
-                          </Button>
-                        </Link>
-                        <Link to="/register" style={{ textDecoration: 'none' }}>
-                          <Button
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'black', display: 'block' }}
-                          >
-                            Register
-                          </Button>
-                        </Link>
-                      </div>
-                      : <h1>Logged in</h1>
-                    } */}
-
-                  </Typography>
+                  <Link to="/myurls" style={{ textDecoration: 'none' }} >
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{ color: 'black' }}>
+                      My Url
+                    </Button>
+                  </Link>
+                  <Link to="/newurls" style={{ textDecoration: 'none' }}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: 'black', display: 'flex' }}
+                    >
+                      Create a New Url
+                    </Button>
+                  </Link>
+                  // TODO
+                  {/* {!user.id ?
+                    <div className='authentication'>
+                      <Link to="/login" style={{ textDecoration: 'none' }}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 2, color: 'black', display: 'flex' }}
+                        >
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                          Register
+                        </Button>
+                      </Link>
+                    </div>
+                    : <h1>Logged in</h1>
+                  } */}
                 </Box >
               </MenuItem>
 

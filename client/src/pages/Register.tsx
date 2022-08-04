@@ -5,38 +5,15 @@ import Button from '@mui/material/Button';
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
 
-export interface IRegisterProps { }
-
-type UserProps = {
-  setEmail: any;
-  setPassword: any;
-  email: any;
-  password: any;
-  setError: any;
-  setUser: any;
-  isSignUp: any;
-  error: any;
-}
-
-const Register: React.FunctionComponent<IRegisterProps> = () => {
-  // const {
-  //   setEmail,
-  //   setPassword,
-  //   email,
-  //   password,
-  //   setError,
-  //   setUser,
-  //   error,
-  //   isSignUp } = props;
+const Register = () => {
 
   const [email, setEmail] = React.useState<any | null>(null);
   const [password, setPassword] = React.useState<any | null>(null);
   const [confirmPassword, setConfirmPassword] = React.useState<any | null>(null);
   const [error, setError] = React.useState<any | null>(null);
   const [isSignUp, setIsSignUp] = React.useState(true);
-  const [user, setUser] = useState({});
+  const [user, setUser] = React.useState({});
 
   let navigate = useNavigate()
 

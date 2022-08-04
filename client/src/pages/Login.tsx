@@ -6,50 +6,33 @@ import { Box } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AnonymousUser, AnonymousUserType, User } from "../types/user";
 
 
-export interface ILoginProps { }
+const Login = () => {
 
-const Login: React.FunctionComponent<ILoginProps> = (props) => {
-
-  const [email, setEmail] = React.useState<any | null>(null);
-  const [password, setPassword] = React.useState<any | null>(null);
-  const [confirmPassword, setConfirmPassword] = React.useState<any | null>(null);
-  const [error, setError] = React.useState<any | null>(null);
-  const [isSignUp, setIsSignUp] = React.useState(true);
-  const [user, setUser] = useState({});
-
+  const [email, setEmail] = React.useState<string | null>(null);
+  const [password, setPassword] = React.useState<string | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
 
   let navigate = useNavigate()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     try {
-      // if (isSignUp && (password !== confirmPassword)) {
-      //   setError('Passwords need to match!')
-      //   return
-      // }
-      // If response is success navigate to onboarding - navidat a part of router dom
       const response = await axios.post(`http://localhost:8001/users/login`, { email, password }, { withCredentials: true })
       if (response.data.user) {
-        setUser(response.data.user.id)
         navigate("/myurls")
-        console.log('sucess!!!')
-        console.log('hello', response.data.user.id);
       }
       const success = response.status === 200
-      if (isSignUp && success) navigate('/myurls')
+      if (success) navigate('/myurls')
     } catch (error) {
-      setError('Email / Password invalid')
-      console.log('did not work')
+      setError('Email / Password invalid');
+      console.log('did not work');
     }
   }
 
-
-
-
   return (
-
 
     <div>
       <Header />
@@ -62,7 +45,6 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
           <Button
             variant="contained"
             type="submit"
-
           >Login</Button>
         </Box>
         <p>{error}</p>

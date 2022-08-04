@@ -1,29 +1,3 @@
-// import React from "react";
-// import '../stylesheet/Header.css'
-// import { Link } from "react-router-dom";
-
-// export interface IHeaderProps { }
-
-// const Header: React.FunctionComponent<IHeaderProps> = (props) => {
-
-//   return (
-//     <div className="navbar">
-//       <h1>TinyApp</h1>
-//       <div>
-
-//         <Link to='/myurls'>My Urls</Link>
-//         <Link to='/newurls'>Create New Url</Link>
-//       </div>
-//       <div>
-//         <Link to='/login'>Login</Link>
-//         <Link to='/register'>Register</Link>
-//       </div>
-//     </div>
-//   )
-// };
-
-// export default Header;
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -111,9 +85,8 @@ const Header = (user: any) => {
                         Create a New Url
                       </Button>
                     </Link>
-
-//TO DO
-                    {!user.id ?
+                    // TODO
+                    {/* {!user.id ?
                       <div className='authentication'>
                         <Link to="/login" style={{ textDecoration: 'none' }}>
                           <Button
@@ -133,12 +106,8 @@ const Header = (user: any) => {
                         </Link>
                       </div>
                       : <h1>Logged in</h1>
-                    }
+                    } */}
 
-
-
-                  </Typography>
-                  <Typography>
                   </Typography>
                 </Box >
               </MenuItem>
@@ -146,17 +115,11 @@ const Header = (user: any) => {
             </Menu>
           </Box>
           <Typography style={{ color: 'black' }}
-
           >
             TinyApp
           </Typography>
-
-
-
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Typography>
-
               <Link to="/myurls" style={{ textDecoration: 'none' }} >
                 <Button
                   onClick={handleCloseNavMenu}
@@ -166,19 +129,15 @@ const Header = (user: any) => {
                 </Button>
               </Link>
             </Typography>
-
             <Link to="/newurls" style={{ textDecoration: 'none' }}> <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Create a New Url </Button>
             </Link>
-
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-
-
             <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -187,8 +146,6 @@ const Header = (user: any) => {
                 Login
               </Button>
             </Link>
-
-
             <Link to="/register" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -197,10 +154,7 @@ const Header = (user: any) => {
                 Register
               </Button>
             </Link>
-
-
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>

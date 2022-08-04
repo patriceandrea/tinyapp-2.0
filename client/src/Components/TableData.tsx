@@ -11,11 +11,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material';
 import axios from 'axios';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 export interface ITableDataProps { }
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,50 +35,42 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-
-
-
-interface IRow {
+type Url = {
   long_url: string;
   short_url: string;
   user_id: string;
-  id: any;
+  id: number;
+}
+
+interface TableUrlsProps {
 
 }
 
-const defaultRows: IRow[] = [];
-
-
-const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
+const TableUrls: React.FunctionComponent<TableUrlsProps> = (props: TableUrlsProps) => {
   let navigate = useNavigate()
 
-  const [longUrl, setLongUrl] = React.useState<any | null>(null);
+  const [urls, setUrls] = React.useState<Url[]>([]);
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
 
-  const [rows, setRows]: [IRow[], (rows: IRow[]) => void] = React.useState(defaultRows);
-
-  useEffect(() => {
+  React.useEffect(() => {
     axios.get('http://localhost:8001/urls/urls', { withCredentials: true }).then(res => {
-      setRows(res.data)
-      console.log(res.data)
+      setUrls(res.data);
     })
   }, []);
 
+  const handleDelete = (id: number) => {
 
-
-  const url = 'http://localhost:8001/urls/delete';
-
-  const handleclick = (id: any) => {
-
-    axios.delete(url, { withCredentials: true })
+    axios.delete(`http://localhost:8001/urls/delete/${id}`, { withCredentials: true })
       .then((res) => {
-        const del = rows.filter((long: any) => id !== long.id)
-        setRows(del)
-        console.log('yo', res)
+        if (res.status === 204) {
+          const updatedUrls = urls.filter((url: Url) => { return id !== url.id })
+          setUrls(updatedUrls);
+        } else {
+          setErrorMessage(res.data.message);
+        }
       })
       .catch((err) => console.log(err))
   }
-
-
 
   return (
 
@@ -91,25 +80,37 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
           <TableRow>
             <StyledTableCell>Long URL</StyledTableCell>
             <StyledTableCell>Short URL</StyledTableCell>
+            <StyledTableCell>Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.user_id}>
+          {urls.map((url: Url) => (
+            <StyledTableRow key={url.id}>
               <StyledTableCell component="th" scope="row">
-                {`ID - ${row.id}`}: {row.long_url}
-
+                {`ID - ${url.id}`}: {url.long_url}
               </StyledTableCell>
-              <StyledTableCell >{row.short_url}
+              <StyledTableCell >
+                {url.short_url}
               </StyledTableCell>
-              <Stack spacing={2} direction="row">
-                <Box mt={0.9}>
-                  <Button variant="contained" onClick={() => navigate('/edit/:shortUrl')} >
-                    Edit
-                  </Button>
-                  <Button variant="contained" style={{ background: 'red' }} onClick={(id) => handleclick(id)}>Delete</Button>
-                </Box>
-              </Stack>
+              <StyledTableCell>
+                <Stack spacing={2} direction="row">
+                  <Box mt={0.9}>
+                    <Button variant="contained" onClick={() => navigate('/edit/:shortUrl')} >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      style={{ background: 'red' }}
+                      onClick={(value: React.MouseEvent<HTMLButtonElement>) => (handleDelete(url.id))}
+                    >
+                      Delete
+                    </Button>
+                    <>
+                      {errorMessage === '' ? (null) : (errorMessage)}
+                    </>
+                  </Box>
+                </Stack>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -118,4 +119,4 @@ const TableData: React.FunctionComponent<ITableDataProps> = (props) => {
   );
 };
 
-export default TableData; 
+export default TableUrls; 

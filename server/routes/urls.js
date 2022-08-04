@@ -175,26 +175,23 @@ module.exports = (db) => {
 
   //Delete 
   //this works 
-  router.delete('/delete', (req, res) => {
+  router.delete('/delete/:id', (req, res) => {
     // const user_id = req.session.id
-    const { long_url, id } = req.body;
+    const id = req.params.id
 
     const command =
       ` DELETE FROM urls 
-      WHERE long_url=$1
-      and id = $2
+      WHERE id=$1
        returning *;`
-    values = [long_url, id];
+    values = [id];
 
     db.query(command, values).then(data => {
       if (data["rows"].length > 0) {
-        return res.status(200).send({
-          "success": true,
-          "message": "Long Url has been deleted!",
-          "user_id": req.session.id
-        })
+        return res.status(204).send();
       }
-      return res.status(404).send("Cannot delete long URl")
+      return res.status(404).send({
+        "message": "Cannot delete long URl"
+      })
 
     })
 

@@ -6,6 +6,22 @@ const findUserByEmail = require('../helpers')
 
 module.exports = (db) => {
   // all routes will go here
+  router.get('/', (req, res) => {
+    // const user_id = req.body.user_id;
+    const id = req.session.id
+    console.log('req.session.id', id);
+    const command = `
+     select * from users 
+     where id= $1;
+;`
+    const values = [id];
+    db.query(command, values).then(data => {
+      if (data["rows"].length > 0) {
+        return res.json(data.rows);
+      }
+    })
+  });
+
   //login works! 
   router.post('/login', (req, res) => {
     const { email, password } = req.body;

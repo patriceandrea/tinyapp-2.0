@@ -14,6 +14,7 @@ const Login = () => {
   const [email, setEmail] = React.useState<string | null>(null);
   const [password, setPassword] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
+  const [user, setUser] = React.useState<string | null>(null);
 
   let navigate = useNavigate()
 
@@ -23,6 +24,7 @@ const Login = () => {
       const response = await axios.post(`http://localhost:8001/users/login`, { email, password }, { withCredentials: true })
       if (response.data.user) {
         navigate("/myurls")
+        setUser(response.data.user)
       }
       const success = response.status === 200
       if (success) navigate('/myurls')

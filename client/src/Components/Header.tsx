@@ -10,14 +10,31 @@ import { Link } from 'react-router-dom';
 import { Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-// import UserContext from './AppContext';
+import { UserContext } from './AppContext';
 import { useContext } from "react";
+import { User } from "../types/user"
+import { useEffect } from 'react';
+import axios from 'axios';
+import { error } from 'console';
+
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  // const user = useContext(UserContext);
+
+  const [user, setUser] = React.useState<User | null>(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/users', { withCredentials: true })
+      .then((res) => {
+        setUser(res.data[0]);
+      })
+      .catch(() => {
+        // console.log("error")
+      })
+  }, [])
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -126,7 +143,7 @@ const Header = () => {
               </Button>
             </Link>
           </Box>
-          {/* {user?.email && <h1>Logout</h1>} */}
+          {`Hello  ${user?.email}`}
         </Toolbar>
       </Container>
     </AppBar>

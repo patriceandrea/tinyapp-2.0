@@ -10,12 +10,14 @@ import { Link } from 'react-router-dom';
 import { Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
+import UserContext from './AppContext';
+import { useContext } from "react";
 
-
-const Header = (user: any) => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+  const user = useContext(UserContext);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -30,7 +32,9 @@ const Header = (user: any) => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+
   };
+
 
   return (
 
@@ -74,27 +78,7 @@ const Header = (user: any) => {
                     </Button>
                   </Link>
                   // TODO
-                  {/* {!user.id ?
-                    <div className='authentication'>
-                      <Link to="/login" style={{ textDecoration: 'none' }}>
-                        <Button
-                          onClick={handleCloseNavMenu}
-                          sx={{ my: 2, color: 'black', display: 'flex' }}
-                        >
-                          Login
-                        </Button>
-                      </Link>
-                      <Link to="/register" style={{ textDecoration: 'none' }}>
-                        <Button
-                          onClick={handleCloseNavMenu}
-                          sx={{ my: 2, color: 'black', display: 'block' }}
-                        >
-                          Register
-                        </Button>
-                      </Link>
-                    </div>
-                    : <h1>Logged in</h1>
-                  } */}
+
                 </Box >
               </MenuItem>
 
@@ -104,6 +88,7 @@ const Header = (user: any) => {
           >
             TinyApp
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Typography>
               <Link to="/myurls" style={{ textDecoration: 'none' }} >
@@ -141,6 +126,7 @@ const Header = (user: any) => {
               </Button>
             </Link>
           </Box>
+          {user?.email && <h1>Logout</h1>}
         </Toolbar>
       </Container>
     </AppBar>

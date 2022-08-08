@@ -8,21 +8,32 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Edit } from "@mui/icons-material";
 import EditUrls from "./pages/EditUrls";
+// import UserContext from "./Components/AppContext";
+import { User } from "./types/user"
+import { UserContextProvider } from "./Components/AppContext";
+
 
 export interface IApplicationProps { }
 
-const Application: React.FunctionComponent<IApplicationProps> = (props) => {
+const Application: React.FunctionComponent<IApplicationProps> = () => {
+
+
+
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/myurls"} element={<MyUrls />} />
-        <Route path={"/newurls"} element={<NewUrls />} />
-        <Route path={"/"} element={<Home />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/register"} element={<Register />} />
-        <Route path={"/edit/:shortUrl"} element={<EditUrls />} />
-      </Routes >
-    </BrowserRouter >
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/myurls"} element={<MyUrls />} />
+          <Route path={"/newurls"} element={<NewUrls />} />
+          <Route path={"/"} element={<Home />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/register"} element={<Register />} />
+          <Route path={"/edit/:shortUrl"} element={<EditUrls />} />
+        </Routes >
+      </BrowserRouter >
+    </UserContextProvider>
+
   )
 };
 

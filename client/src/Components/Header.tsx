@@ -10,14 +10,14 @@ import { Link } from 'react-router-dom';
 import { Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-import UserContext from './AppContext';
+// import UserContext from './AppContext';
 import { useContext } from "react";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const user = useContext(UserContext);
+  // const user = useContext(UserContext);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -126,7 +126,7 @@ const Header = () => {
               </Button>
             </Link>
           </Box>
-          {user?.email && <h1>Logout</h1>}
+          {/* {user?.email && <h1>Logout</h1>} */}
         </Toolbar>
       </Container>
     </AppBar>

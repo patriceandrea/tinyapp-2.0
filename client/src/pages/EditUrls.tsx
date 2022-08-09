@@ -1,7 +1,6 @@
 import React from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
 import Button from '@mui/material/Button';
 import '../App.css'
 import Header from '../Components/Header';
@@ -10,6 +9,7 @@ import "../stylesheet/EditUrls.css"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export interface IHomeProps { }
 
@@ -47,6 +47,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
 
 
 
+
   return (
 
 
@@ -55,7 +56,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
       <Header />
       <div className="edit">
         <h2>TinyURL for: {urls.long_url}</h2>
-        <p>Short URL: {urls.short_url}</p>
+        <p>Short URL:<a href={`https://${urls.long_url}`} target="_blank" >{urls.short_url} </a></p>
         <h2>EDIT</h2>
         <div className="text-field">
           <p>new Url:</p>

@@ -1,5 +1,3 @@
-const users = require('./users');
-
 const router = require('express').Router();
 
 

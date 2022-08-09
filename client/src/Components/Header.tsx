@@ -10,7 +10,7 @@ import { Menu, MenuItem } from '@mui/material';
 import { User } from "../types/user"
 import { useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -20,6 +20,7 @@ const Header = () => {
   const [user, setUser] = React.useState<User | null>(null);
   const [errorMessage, setErrorMessage] = React.useState<string>('');
 
+  let navigate = useNavigate()
 
   useEffect(() => {
     axios.get('http://localhost:8001/users', { withCredentials: true })
@@ -39,7 +40,9 @@ const Header = () => {
       .then((response) => {
         const success = response.status === 200
         if (success) {
+          navigate("/")
           setUser(null);
+
         }
         else {
           console.log("not a sucess")
@@ -175,14 +178,13 @@ const Header = () => {
             </Box>}
           {user?.id && `Hello  ${user?.email}`}
           {user?.id &&
-            <Link to="/myurls" style={{ textDecoration: 'none' }}>
-              <Button
-                onClick={logoutClick}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Logout
-              </Button>
-            </Link>}
+            <Button
+              onClick={logoutClick}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Logout
+            </Button>
+          }
         </Toolbar>
       </Container>
     </AppBar >

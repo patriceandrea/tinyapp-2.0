@@ -4,9 +4,7 @@ import AuthenTextField from "../Components/AuthenTextField";
 import Button from '@mui/material/Button';
 import { Box } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AnonymousUser, AnonymousUserType, User } from "../types/user";
 
 
 const Login = () => {

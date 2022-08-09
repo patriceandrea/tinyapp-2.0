@@ -19,21 +19,29 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
   const [longUrl, setLongUrl] = React.useState<any | null>(null);
   const [error, setError] = React.useState<any | null>(null);
   const [urls, setUrls] = React.useState<any | null>([]);
+  const [data, setData] = React.useState<any | null>([]);
 
+  // const url = `http://localhost:8001/urls/edit/:shortUrl`;
 
-  const url = `http://localhost:8001/urls/edit/:shortUrl`;
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8001/urls/:id`, { withCredentials: true })
+  //     .then(res => {
+  //       const urls = res.data
+  //       setUrls(urls)
+  //     })
+  // }, [])
 
-  useEffect(() => {
-    axios.get(`http://localhost:8001/urls/:shortUrl`, { params: { shortUrl } })
-      .then(res => {
-        const urls = res.data
-        setUrls(urls)
-      })
-  }, [shortUrl])
+  React.useEffect((id: void) => {
+
+    axios.get(`http://localhost:8001/urls/${id}`, { params: { id: id } }).then(res => {
+      console.log(res.data);
+      setData(res.data);
+    })
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    axios.put(url, { longUrl }, { withCredentials: true })
+    axios.put(`http://localhost:8001/urls/edit/id`, { longUrl }, { withCredentials: true })
       .then((data) => {
         navigate("/myurls");
 
@@ -49,10 +57,12 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
       <Header />
       <div className="edit">
         {urls.map((url: any) => {
-          <h2>TinyURL for: insert URL link{url}</h2>
+          <>
+            <h2>TinyURL for: insert URL link</h2>
+            <p>Short URL: {url.short_url}</p></>
         })}
 
-        <p>Short URL: {JSON.stringify(shortUrl)}  :   {urls}</p>
+
 
         <h2>EDIT</h2>
 

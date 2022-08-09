@@ -28,21 +28,22 @@ module.exports = (db) => {
 
   /// get request once the short url has been generated 
   //works!
-  router.get('/:shortUrl', (req, res) => {
+  router.get('/:id', (req, res) => {
     // const user_id = req.body.user_id;
-    const short_url = req.params.shortUrl;
+    // const short_url = req.params.shortUrl;
     const user_id = req.session.id
-    console.log('req.session.id', req.session.id);
+    const id = req.params.id
     const command = `
-    select  urls.user_id, long_url, short_url
+    select  urls.id, long_url, short_url, user_id
     from urls 
     left join users on users.id = urls.user_id
-    where user_id= $1
-    and short_url=$2
+    where urls.id= $1
+    and user_id = $2
     ;`
-    const values = [user_id, short_url];
+    const values = [id, user_id];
 
     db.query(command, values).then(data => {
+
       if (data["rows"].length > 0) {
         return res.json(data.rows);
       }
@@ -78,7 +79,7 @@ module.exports = (db) => {
 
   ///Edit 
   //put request works!
-  router.put('/edit/:shortUrl', (req, res) => {
+  router.put('/edit/:id', (req, res) => {
     const user_id = req.session.id
     const short_url = req.params.shortUrl;
     const { long_url } = req.body;

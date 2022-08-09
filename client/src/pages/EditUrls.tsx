@@ -9,8 +9,7 @@ import "../stylesheet/EditUrls.css"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { Url } from "../types/urls"
 export interface IHomeProps { }
 
 const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
@@ -19,7 +18,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
 
 
   const [longUrl, setLongUrl] = React.useState<any | null>(null);
-  const [urls, setUrls] = React.useState<any | null>([]);
+  const [urls, setUrls] = React.useState<Url | null>(null);
 
 
 
@@ -55,8 +54,8 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
     <div>
       <Header />
       <div className="edit">
-        <h2>TinyURL for: {urls.long_url}</h2>
-        <p>Short URL:<a href={`https://${urls.long_url}`} target="_blank" >{urls.short_url} </a></p>
+        <h2>TinyURL for: {urls?.long_url}</h2>
+        <p>Short URL:<a href={`https://${urls?.long_url}`} target="_blank" >{urls?.short_url} </a></p>
         <h2>EDIT</h2>
         <div className="text-field">
           <p>new Url:</p>

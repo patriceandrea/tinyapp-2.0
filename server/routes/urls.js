@@ -81,20 +81,19 @@ module.exports = (db) => {
   //put request works!
   router.put('/edit/:id', (req, res) => {
     const user_id = req.session.id
-    const short_url = req.params.shortUrl;
-    const { long_url } = req.body;
+    const id = req.params.id;
+    const long_url = req.body.longUrl;
 
     const command =
       ` UPDATE urls
       SET long_url = $1
       WHERE user_id = $2
-      AND short_url = $3
+      AND id = $3
      returning *;`
-    values = [long_url, user_id, short_url];
+    values = [long_url, user_id, id];
 
     db.query(command, values).then(data => {
       if (data["rows"].length > 0) {
-
         return res.status(200).send({
           "success": true,
           "message": "Long Url has been updated successfully!",
@@ -102,7 +101,7 @@ module.exports = (db) => {
         })
       }
       console.log(data["rows"])
-      return res.status(404).send("Error creating profile page")
+      return res.status(404).send("Cannot update longUrl")
 
     })
 
@@ -133,12 +132,6 @@ module.exports = (db) => {
 
   });
 
-
-  //from the mock db 
-  // router.get('/', (req, res) => {
-  //   const usersArr = Object.values(urls);
-  //   res.json(usersArr);
-  // })
 
   return router;
 }

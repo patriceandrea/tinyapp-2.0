@@ -1,12 +1,16 @@
 import React from "react";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+import Button from '@mui/material/Button';
 import '../App.css'
 import Header from '../Components/Header';
-import Text from "../Components/Text";
 import "../stylesheet/Text.css";
 import "../stylesheet/EditUrls.css"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+
 export interface IHomeProps { }
 
 const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
@@ -29,16 +33,20 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
   }, [])
 
 
-  const handleSubmit = (e: any) => {
+  const updateSubmit = (e: any) => {
     e.preventDefault();
-    axios.put(`http://localhost:8001/urls/edit/id`, { longUrl }, { withCredentials: true })
-      .then((data) => {
+    axios.put(`http://localhost:8001/urls/edit/${id}`, { longUrl, id }, { withCredentials: true })
+      .then((res) => {
+        setUrls(res.data)
         navigate("/myurls");
 
       })
       .catch((err) => console.log(err))
 
   }
+
+
+
   return (
 
 
@@ -51,11 +59,21 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
         <h2>EDIT</h2>
         <div className="text-field">
           <p>new Url:</p>
-          <form onSubmit={handleSubmit}>
-            <Text />
+          <form onSubmit={updateSubmit}>
+            <Box
+              sx={{
+                width: 400,
+                maxWidth: '70%',
+              }}
+            >
+              <TextField
+                fullWidth label="new TinyURL"
+                id="fullWidth"
+                onChange={(e) => { setLongUrl(e.target.value) }} />
+            </Box>
+            <Button variant="contained" sx={{ m: 1 }} type="submit">Submit</Button>
           </form>
         </div>
-
       </div>
     </div >
   )

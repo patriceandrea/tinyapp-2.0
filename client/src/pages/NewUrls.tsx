@@ -37,7 +37,11 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
       <div className="text-field">
         <form onSubmit={(e) => { handleSubmit(e) }}>
           <p>Enter a URL:</p>
-          <TextField fullWidth label="new TinyURL" id="fullWidth" onChange={(e) => { setLongUrl(e.target.value) }} />
+          <TextField
+            fullWidth
+            label="new TinyURL"
+            id="fullWidth"
+            onChange={(e) => { setLongUrl(e.target.value) }} />
           <Button variant="contained" sx={{ m: 1 }} type="submit" >Submit</Button>
           {error}
         </form>

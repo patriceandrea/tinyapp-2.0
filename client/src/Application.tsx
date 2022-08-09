@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyUrls from "./pages/MyUrls";
 import NewUrls from "./pages/NewUrls";

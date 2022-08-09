@@ -58,7 +58,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
 
         <div className="text-field">
           <p>new Url:</p>
-          <form onSubmit={(e) => { handleSubmit(e) }}>
+          <form onSubmit={handleSubmit}>
             <Text />
           </form>
         </div>

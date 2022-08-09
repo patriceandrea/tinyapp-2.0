@@ -72,6 +72,13 @@ const TableUrls: React.FunctionComponent<TableUrlsProps> = (props: TableUrlsProp
       .catch((err) => console.log(err))
   }
 
+
+  const handleUpdate = (id: number) => {
+    console.log(id)
+    navigate('/edit/:shortUrl')
+
+  }
+
   return (
 
     <TableContainer component={Paper}>
@@ -95,7 +102,7 @@ const TableUrls: React.FunctionComponent<TableUrlsProps> = (props: TableUrlsProp
               <StyledTableCell>
                 <Stack spacing={2} direction="row">
                   <Box mt={0.9}>
-                    <Button variant="contained" onClick={() => navigate('/edit/:shortUrl')} >
+                    <Button variant="contained" onClick={(value: React.MouseEvent<HTMLButtonElement>) => (handleUpdate(url.id))} >
                       Edit
                     </Button>
                     <Button

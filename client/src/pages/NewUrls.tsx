@@ -9,7 +9,6 @@ export interface INewUrlsProps { }
 
 
 const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
-  // const { user } = props;
 
   let navigate = useNavigate();
 
@@ -23,9 +22,6 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
     e.preventDefault();
     axios.post(url, { longUrl }, { withCredentials: true })
       .then((data) => {
-        // console.log(user);
-        // setLongUrl(data)
-        // console.log("yay!")
         navigate("/myurls");
 
       })

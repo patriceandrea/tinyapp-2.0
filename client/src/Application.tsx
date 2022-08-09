@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyUrls from "./pages/MyUrls";
 import NewUrls from "./pages/NewUrls";
 import Home from './pages/Home';
@@ -7,7 +7,7 @@ import './App.css';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import EditUrls from "./pages/EditUrls";
-import { useParams } from "react-router-dom";
+
 
 
 export interface IApplicationProps { }
@@ -15,7 +15,6 @@ export interface IApplicationProps { }
 const Application: React.FunctionComponent<IApplicationProps> = () => {
 
 
-  const params = useParams()
 
   return (
 

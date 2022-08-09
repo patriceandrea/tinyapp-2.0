@@ -75,7 +75,7 @@ const TableUrls: React.FunctionComponent<TableUrlsProps> = (props: TableUrlsProp
 
   const handleUpdate = (id: number) => {
     console.log(id)
-    navigate('/edit/:id')
+    navigate(`/edit/${id}`)
 
   }
 

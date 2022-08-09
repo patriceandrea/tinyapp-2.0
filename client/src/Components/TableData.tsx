@@ -93,7 +93,7 @@ const TableUrls: React.FunctionComponent<TableUrlsProps> = (props: TableUrlsProp
           {urls.map((url: Url) => (
             <StyledTableRow key={url.id}>
               <StyledTableCell component="th" scope="row">
-                {`ID - ${url.id}`}: {url.long_url}
+                {url.long_url}
               </StyledTableCell>
               <StyledTableCell >
                 {url.short_url}

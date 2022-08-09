@@ -79,7 +79,7 @@ module.exports = (db) => {
 
 
 
-  router.post('/logout', (req, res) => {
+  router.delete('/logout', (req, res) => {
     req.session = null;
     return res.status(200).send({ "message": "Logout successful" });
   });

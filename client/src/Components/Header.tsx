@@ -6,16 +6,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Menu, MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
-import { UserContext } from './AppContext';
-import { useContext } from "react";
 import { User } from "../types/user"
 import { useEffect } from 'react';
 import axios from 'axios';
-import { error } from 'console';
 
 
 const Header = () => {
@@ -24,6 +18,8 @@ const Header = () => {
 
 
   const [user, setUser] = React.useState<User | null>(null);
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
+
 
   useEffect(() => {
     axios.get('http://localhost:8001/users', { withCredentials: true })
@@ -31,9 +27,26 @@ const Header = () => {
         setUser(res.data[0]);
       })
       .catch(() => {
-        // console.log("error")
+        setErrorMessage(errorMessage)
       })
   }, [])
+
+
+
+  const logoutClick = (e: any) => {
+    e.preventDefault()
+    axios.delete(`http://localhost:8001/users/logout`, { withCredentials: true })
+      .then((response) => {
+        const success = response.status === 200
+        if (success) {
+          setUser(null);
+        }
+        else {
+          console.log("not a sucess")
+        }
+      })
+
+  }
 
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -95,7 +108,24 @@ const Header = () => {
                     </Button>
                   </Link>
                   // TODO
-
+                  <div className='authentication'>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'black', display: 'flex' }}
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'black', display: 'block' }}
+                      >
+                        Register
+                      </Button>
+                    </Link>
+                  </div>
                 </Box >
               </MenuItem>
 
@@ -124,29 +154,38 @@ const Header = () => {
               Create a New Url </Button>
             </Link>
           </Box>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Link to="/login" style={{ textDecoration: 'none' }}>
+          {!user?.id &&
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Link to="/login" style={{ textDecoration: 'none' }}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link to="/register" style={{ textDecoration: 'none' }}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Register
+                </Button>
+              </Link>
+            </Box>}
+          {user?.id && `Hello  ${user?.email}`}
+          {user?.id &&
+            <Link to="/myurls" style={{ textDecoration: 'none' }}>
               <Button
-                onClick={handleCloseNavMenu}
+                onClick={logoutClick}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                Login
+                Logout
               </Button>
-            </Link>
-            <Link to="/register" style={{ textDecoration: 'none' }}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Register
-              </Button>
-            </Link>
-          </Box>
-          {`Hello  ${user?.email}`}
+            </Link>}
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
 
   );
 };

@@ -4,6 +4,9 @@ Multi-page react application that allows to shorten long URLs.
 
 The project is similar to the tinyapp done at lighthouse labs, however the front-end is React and Typescript instead of EJS and Javascript. 
 
+## App Demo 
+![Demo](./client/public/ezgif.com-gif-maker (4).gif)
+
 ## Main Page 
 ![Main Page](./client/public/Screen%20Shot%202022-06-26%20at%206.08.00%20PM.png)
 
@@ -25,3 +28,6 @@ The project is similar to the tinyapp done at lighthouse labs, however the front
 - Cookie-session 
 - Axios 
 - Cors
+- React-Router-Dom
+- Bcryptjs
+- Postgres

@@ -197,7 +197,7 @@ const Header = () => {
                 </Button>
               </Link>
             </Box>}
-          {user?.id && `Hello  ${user?.email} !`}
+          {user?.id && `Hello  ${user?.email}!`}
           {user?.id &&
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button

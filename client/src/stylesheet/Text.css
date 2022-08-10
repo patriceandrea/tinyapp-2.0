@@ -1,6 +1,8 @@
 .text-field {
   display: flex;
-  justify-content: center;
+  width: 50%;
+  align-items: center;
+  margin: auto;
 }
 
 .text-field p {

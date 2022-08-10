@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { Url } from "../types/urls";
 export interface INewUrlsProps { }
 
 
-const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
+const NewUrls: React.FunctionComponent<INewUrlsProps> = () => {
 
   let navigate = useNavigate();
 
-  const [longUrl, setLongUrl] = React.useState<any | null>(null);
+  const [longUrl, setLongUrl] = React.useState<Url | null>(null);
   const [error, setError] = React.useState<any | null>(null);
 
 
@@ -31,23 +32,24 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = (props: any) => {
 
 
   return (
-    <div  >
+    <>
       <Header />
       <h1>Create TinyURL</h1>
-      <div className="text-field">
-        <form onSubmit={(e) => { handleSubmit(e) }}>
+
+      <form onSubmit={(e) => { handleSubmit(e) }}>
+        <div className="text-field">
           <p>Enter a URL:</p>
           <TextField
             fullWidth
             label="new TinyURL"
             id="fullWidth"
-            onChange={(e) => { setLongUrl(e.target.value) }} />
+            onChange={(e: any) => { setLongUrl(e.target.value) }} />
           <Button variant="contained" sx={{ m: 1 }} type="submit" >Submit</Button>
           {error}
-        </form>
+        </div>
+      </form>
 
-      </div>
-    </div >
+    </>
   )
 };
 

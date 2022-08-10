@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import '../App.css'
 import Header from '../Components/Header';
-import "../stylesheet/Text.css";
 import "../stylesheet/EditUrls.css"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -57,9 +56,11 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
         <h2>TinyURL for: {urls?.long_url}</h2>
         <p>Short URL:<a href={`https://${urls?.long_url}`} target="_blank" >{urls?.short_url} </a></p>
         <h2>EDIT</h2>
-        <div className="text-field">
-          <p>new Url:</p>
-          <form onSubmit={updateSubmit}>
+
+
+        <form onSubmit={updateSubmit}>
+          <div className="text-field">
+            <p>new Url:</p>
             <Box
               sx={{
                 width: 400,
@@ -72,8 +73,9 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
                 onChange={(e) => { setLongUrl(e.target.value) }} />
             </Box>
             <Button variant="contained" sx={{ m: 1 }} type="submit">Submit</Button>
-          </form>
-        </div>
+          </div>
+        </form>
+
       </div>
     </div >
   )

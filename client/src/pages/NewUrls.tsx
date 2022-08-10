@@ -26,8 +26,10 @@ const NewUrls: React.FunctionComponent<INewUrlsProps> = () => {
         navigate("/myurls");
 
       })
-      .catch((err) => console.log(err))
-
+      .catch((err) => {
+        setError(error)
+        console.log(err)
+      })
   }
 
 

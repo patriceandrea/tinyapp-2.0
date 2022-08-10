@@ -28,7 +28,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
       .then(res => {
         setUrls(res.data[0])
       })
-  }, [])
+  }, [id])
 
 
   const updateSubmit = (e: any) => {
@@ -54,7 +54,7 @@ const EditUrls: React.FunctionComponent<IHomeProps> = (props) => {
       <Header />
       <div className="edit">
         <h2>TinyURL for: {urls?.long_url}</h2>
-        <p>Short URL:<a href={`https://${urls?.long_url}`} target="_blank" >{urls?.short_url} </a></p>
+        <p>Short URL:<a href={`https://${urls?.long_url}`} rel="noreferrer" target="_blank">{urls?.short_url} </a></p>
         <h2>EDIT</h2>
 
 

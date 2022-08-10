@@ -2,22 +2,18 @@
 
 Multi-page react application that allows to shorten long URLs. 
 
-The project is similar to the tinyapp done at lighthouse labs, however the front-end is React and Typescript instead of EJS and Javascript. 
+The project is similar to the tinyapp done at Lighthouse Labs, however the front-end is React and Typescript instead of EJS and Javascript. 
 
 ## App Demo 
-![Demo](./client/public/ezgif.com-gif-maker (4).gif)
+![Demo](./client/public/demo.gif)
 
-## Main Page 
-![Main Page](./client/public/Screen%20Shot%202022-06-26%20at%206.08.00%20PM.png)
+# Features 
+- Views the list of URL that you have shorten
+- Creates a short verision of the URL 
+- Updates the short URL to a new Long URL
+- Deletes the unwanted URL  
+- Users can log in or sign up to view their list of URL  
 
-## New Url 
-![New Url](./client/public/Screen%20Shot%202022-06-26%20at%206.08.31%20PM.png)
-
-## Edit Shot Url 
-![Edit Short Url](./client/public/Screen%20Shot%202022-06-26%20at%206.09.30%20PM.png)
-
-## Login Page 
-![Edit Short Url](./client/public/Screen%20Shot%202022-06-26%20at%206.09.57%20PM.png)
 
 # Dependencies 
 - React

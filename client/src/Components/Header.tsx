@@ -35,8 +35,8 @@ const Header = () => {
 
 
 
-  const logoutClick = (e: any) => {
-    e.preventDefault()
+  const logoutClick = () => {
+    // e.preventDefault()
     axios.delete(`http://localhost:8001/users/logout`, { withCredentials: true })
       .then((response) => {
         const success = response.status === 200
@@ -121,30 +121,41 @@ const Header = () => {
                       Create a New Url
                     </Button>
                   </Link>
-                  <div className='authentication'>
-                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                  {user?.id &&
+                    <Link to="/" style={{ textDecoration: 'none' }}>
                       <Button
-                        onClick={handleCloseNavMenu}
+                        onClick={logoutClick}
                         sx={{ my: 2, color: 'black', display: 'flex' }}
                       >
-                        Login
+                        Logout
                       </Button>
-                    </Link>
-                    <Link to="/register" style={{ textDecoration: 'none' }}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'black', display: 'block' }}
-                      >
-                        Register
-                      </Button>
-                    </Link>
-                  </div>
+                    </Link>}
+                  {!user?.id &&
+                    <div className='authentication'>
+                      <Link to="/login" style={{ textDecoration: 'none' }}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 2, color: 'black', display: 'flex' }}
+                        >
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 2, color: 'black', display: 'block' }}
+                        >
+                          Register
+                        </Button>
+                      </Link>
+                    </div>
+                  }
                 </Box >
               </MenuItem>
 
             </Menu>
           </Box>
-          <Typography style={{ color: 'black' }}
+          <Typography style={{ color: 'black' }} sx={{ m: 1 }}
           >
             TinyApp
           </Typography>
@@ -168,7 +179,7 @@ const Header = () => {
             </Link>
           </Box>
           {!user?.id &&
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Link to="/login" style={{ textDecoration: 'none' }}>
                 <Button
                   onClick={handleCloseNavMenu}
@@ -186,14 +197,21 @@ const Header = () => {
                 </Button>
               </Link>
             </Box>}
-          {user?.id && `Hello  ${user?.email}`}
+          {user?.id && `Hello  ${user?.email} !`}
           {user?.id &&
-            <Button
-              onClick={logoutClick}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Logout
-            </Button>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button
+                onClick={
+                  () => {
+                    logoutClick();
+                    handleCloseNavMenu();
+                  }
+                }
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Logout
+              </Button>
+            </Box>
           }
         </Toolbar>
       </Container>
